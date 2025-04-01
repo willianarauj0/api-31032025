@@ -1,28 +1,31 @@
 package application.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nome;
 
-    // Construtor vazio
-    public Categoria() {}
+    public Categoria() {
+    }
 
-    // Construtor com parâmetros
-    public Categoria(String nome) {
+    public Categoria(Long id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 
     // Getters e Setters
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

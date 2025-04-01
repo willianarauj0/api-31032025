@@ -1,0 +1,25 @@
+@url = https://ominous-halibut-p7j664949pc77w7-8080.app.github.dev
+
+### Listar opções de uma questão
+GET {{url}}/questoes/1/opcoes
+
+### Criar nova opção
+POST {{url}}/questoes/1/opcoes
+Content-Type: application/json
+
+{
+    "texto": "Opção A",
+    "correta": true
+}
+
+### Atualizar opção
+PUT {{url}}/questoes/1/opcoes/1
+Content-Type: application/json
+
+{
+    "texto": "Opção A - Atualizada",
+    "correta": false
+}
+
+### Deletar opção
+DELETE {{url}}/questoes/1/opcoes/1

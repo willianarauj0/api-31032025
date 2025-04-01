@@ -1,46 +1,39 @@
 package application.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Questao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String enunciado;
+    private int dificuldade;
+    
+    @OneToMany(mappedBy = "questao")
+    private List<Opcao> opcoes;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
-
+    // Construtores, getters e setters
     public Questao() {}
-
-    public Questao(String enunciado, Categoria categoria) {
-        this.enunciado = enunciado;
-        this.categoria = categoria;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
+    
+    public Questao(Long id, String enunciado, int dificuldade) {
         this.id = id;
-    }
-
-    public String getEnunciado() {
-        return enunciado;
-    }
-
-    public void setEnunciado(String enunciado) {
         this.enunciado = enunciado;
+        this.dificuldade = dificuldade;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
+    // Getters e Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getEnunciado() { return enunciado; }
+    public void setEnunciado(String enunciado) { this.enunciado = enunciado; }
+    public int getDificuldade() { return dificuldade; }
+    public void setDificuldade(int dificuldade) { this.dificuldade = dificuldade; }
+    public List<Opcao> getOpcoes() { return opcoes; }
+    public void setOpcoes(List<Opcao> opcoes) { this.opcoes = opcoes; }
 }

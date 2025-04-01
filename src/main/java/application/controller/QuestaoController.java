@@ -1,7 +1,8 @@
 package application.controller;
 
+import application.service.QuestaoService;
 import application.model.Questao;
-import application.repository.QuestaoRepository;
+import application.record.QuestaoDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,19 +10,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/questoes")
 public class QuestaoController {
-    private final QuestaoRepository repository;
+    private final QuestaoService service;
 
-    public QuestaoController(QuestaoRepository repository) {
-        this.repository = repository;
+    public QuestaoController(QuestaoService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public List<Questao> listar() {
-        return repository.findAll();
+    public List<Questao> listarTodas() {
+        return service.listarTodas();
+    }
+
+    @GetMapping("/{id}")
+    public Questao buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
     }
 
     @PostMapping
-    public Questao criar(@RequestBody Questao questao) {
-        return repository.save(questao);
+    public Questao salvar(@RequestBody QuestaoDTO dto) {
+        return service.salvar(dto);
+    }
+
+    @PutMapping("/{id}")
+    public Questao atualizar(@PathVariable Long id, @RequestBody QuestaoDTO dto) {
+        return service.atualizar(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }

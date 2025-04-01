@@ -1,0 +1,38 @@
+@url = https://ominous-halibut-p7j664949pc77w7-8080.app.github.dev
+
+### Listar todas as questões
+GET {{url}}/questoes
+
+### Buscar questão por ID
+GET {{url}}/questoes/1
+
+### Criar nova questão
+POST {{url}}/questoes
+Content-Type: application/json
+
+{
+    "enunciado": "Qual é a capital do Brasil?",
+    "dificuldade": 2,
+    "opcoes": [
+        {
+            "texto": "Rio de Janeiro",
+            "correta": false
+        },
+        {
+            "texto": "Brasília",
+            "correta": true
+        }
+    ]
+}
+
+### Atualizar questão
+PUT {{url}}/questoes/1
+Content-Type: application/json
+
+{
+    "enunciado": "Qual é a capital do Brasil? (Atualizada)",
+    "dificuldade": 3
+}
+
+### Deletar questão
+DELETE {{url}}/questoes/1

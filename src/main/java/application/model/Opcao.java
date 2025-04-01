@@ -1,56 +1,39 @@
 package application.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Opcao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String descricao;
-    private boolean correto;
-
+    private Long id;
+    private String texto;
+    private boolean correta;
+    
     @ManyToOne
-    @JoinColumn(name = "questao_id")
     private Questao questao;
 
+    // Construtores, getters e setters
     public Opcao() {}
-
-    public Opcao(String descricao, boolean correto, Questao questao) {
-        this.descricao = descricao;
-        this.correto = correto;
-        this.questao = questao;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
+    
+    public Opcao(Long id, String texto, boolean correta, Questao questao) {
         this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public boolean isCorreto() {
-        return correto;
-    }
-
-    public void setCorreto(boolean correto) {
-        this.correto = correto;
-    }
-
-    public Questao getQuestao() {
-        return questao;
-    }
-
-    public void setQuestao(Questao questao) {
+        this.texto = texto;
+        this.correta = correta;
         this.questao = questao;
     }
+
+    // Getters e Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getTexto() { return texto; }
+    public void setTexto(String texto) { this.texto = texto; }
+    public boolean isCorreta() { return correta; }
+    public void setCorreta(boolean correta) { this.correta = correta; }
+    public Questao getQuestao() { return questao; }
+    public void setQuestao(Questao questao) { this.questao = questao; }
 }

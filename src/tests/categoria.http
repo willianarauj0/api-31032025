@@ -1,0 +1,26 @@
+@url = https://organic-engine-qj6wp9prgjjfg46-8080.app.github.dev
+
+### Listar todas as categorias
+GET {{url}}/categorias
+
+### Buscar categoria por ID
+GET {{url}}/categorias/1
+
+### Criar nova categoria
+POST {{url}}/categorias
+Content-Type: application/json
+
+{
+    "nome": "Terror"
+}
+
+### Atualizar categoria
+PUT {{url}}/categorias/1
+Content-Type: application/json
+
+{
+    "nome": "Terror - Atualizado"
+}
+
+### Deletar categoria
+DELETE {{url}}/categorias/1
